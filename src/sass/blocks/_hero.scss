@@ -1,0 +1,12 @@
+.hero{
+    background: url("../img/bg.jpg")  no-repeat center;
+    min-height: 910px;
+    background-color: var(--theme-color);
+   
+    &__text {
+        margin-left: 80px;
+        max-width: 500px;
+        padding-top: 250px;
+        
+    }
+}

@@ -1,0 +1,49 @@
+@import 'base/variables';
+@import 'base/animations';
+
+
+* {
+    scroll-behavior: smooth;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+   
+    
+}
+
+a{
+    color: #ffffff;
+}
+
+body {
+    font-family: 'Merriweather', serif;
+    
+    
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    
+}
+
+.lite{
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    
+}
+
+@import 'blocks/header.scss';
+@import 'blocks/buttons';
+@import 'blocks/titles';
+@import 'blocks/forms';
+@import 'blocks/footer';
+@import 'blocks/hero';
+@import 'blocks/skills';
+@import 'blocks/portfolio';
+@import 'blocks/video';
+@import 'blocks/price';
+@import 'blocks/contacts';
+@import 'base/media';

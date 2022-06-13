@@ -1,0 +1,43 @@
+.video {
+    background-color: var(--theme-color);
+    padding: 100px 0 0 0;
+}
+
+.video__preview {
+    margin-top: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+    img {
+        display: block;
+        max-width: 100%;
+    }
+}
+
+.video__play {
+    background: url('../icons/Play_hover.png');
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    z-index: 111;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%)  translateX(-50%);
+    cursor: pointer;
+    transition: all .7s ease;
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        
+    }
+    
+}
+
+.video__play svg:hover {
+    path {
+        fill: #bdae82;
+    }
+}

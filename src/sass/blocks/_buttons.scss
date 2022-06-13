@@ -1,0 +1,45 @@
+.btn {
+    height: 55px;
+    width: 220px;
+    background-color: var(--main-yellow);
+    outline: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s ease;
+    &_price {
+        display: block;
+        margin: auto;
+        margin-top: 40px;
+        
+    }
+    &_portfolio {
+        border: 2px solid #BDAE82;
+        text-align: center;
+        width: 216px;
+        height: 55px;
+        margin: 0px 5px;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'Inter' , sans-serif;
+        transition: all .3s ease;
+        background-color: var(--theme-color);
+        color: var(--main-yellow);
+        cursor: pointer;
+        &_active {
+            background-color: var(--main-switch);
+            color: #000000;
+         
+            
+        }
+    }
+}
+.btn:hover{
+    color: #ffffff;
+}
+
+.btn_portfolio_active {
+    background-color: var(--main-yellow);
+    color: var(--portfolio-button);
+}
