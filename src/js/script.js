@@ -4,6 +4,7 @@ const i18Obj = {
       'portfolio': 'Portfolio',
       'video': 'Video',
       'price': 'Price',
+      'phone' : 'phone',
       'contacts': 'Contacts',
       'hero-title': 'Alexa Rise',
       'hero-text': 'Save sincere emotions, romantic feelings and happy moments of life together with professional photographer Alexa Rise',
@@ -37,13 +38,16 @@ const i18Obj = {
       'price-description-3-span-5': 'Make up, visage, hairstyle',
       'order': 'Order shooting',
       'contact-me': 'Contact me',
-      'send-message': 'Send message'
+      'send-message': 'Send message',
+      'E-mail' : 'E-mail',
+      'message' : 'message'
     },
     'ru': {
       'skills': 'Навыки',
       'portfolio': 'Портфолио',
       'video': 'Видео',
       'price': 'Цены',
+      'phone' : 'Телефон',
       'contacts': 'Контакты',
       'hero-title': 'Алекса Райс',
       'hero-text': 'Сохраните искренние эмоции, романтические переживания и счастливые моменты жизни вместе с профессиональным фотографом',
@@ -77,9 +81,11 @@ const i18Obj = {
       'price-description-3-span-5': 'Макияж, визаж, прическа',
       'order': 'Заказать съемку',
       'contact-me': 'Свяжитесь со мной',
-      'send-message': 'Отправить'
+      'send-message': 'Отправить',
+      'E-mail' : 'почта',
+      'message' : 'сообщения'
     }
-  }
+  };
 
 
     const menu = document.querySelector('.nav'),
@@ -95,76 +101,76 @@ const i18Obj = {
         item.addEventListener('click', () => {
             hamburger.classList.toggle('hamburger_active');
             menu.classList.toggle('nav_active');
-        })
-    })
+        });
+    });
 
 
     // translate language
     
-   
+   const input = document.querySelectorAll('.form__input');
 
     const getTranslate = (lang) => {
-        const allData = document.querySelectorAll('[data-i18]')
+        const allData = document.querySelectorAll('[data-i18]');
         allData.forEach((i) => {
-           i.textContent = i18Obj[lang][i.dataset.i18]
-           
-        })
+           i.textContent = i18Obj[lang][i.dataset.i18];
+           i.placeholder = i18Obj[lang][i.dataset.i18];
+        });
         
-    }
+    };
 
 
 const ruBtn = document.querySelector('.ru-btn');
 const enBtn = document.querySelector('.en-btn');
 
 ruBtn.addEventListener('click', () => {
-    ruBtn.classList.add('btn_active')
+    ruBtn.classList.add('btn_active');
     enBtn.classList.remove('btn_active');
-        getTranslate('ru')
-})
+        getTranslate('ru');
+});
 
 enBtn.addEventListener('click', () => {
-    ruBtn.classList.remove('btn_active')
+    ruBtn.classList.remove('btn_active');
     enBtn.classList.add('btn_active');
-        getTranslate('en')
-})
+        getTranslate('en');
+});
 
 // tabs 
 
 
-const potrfolioBtn = document.querySelectorAll('.btn_portfolio')
-const portfolioContent = document.querySelectorAll('.portfolio__content')
+const potrfolioBtn = document.querySelectorAll('.btn_portfolio');
+const portfolioContent = document.querySelectorAll('.portfolio__content');
 
 
 
 potrfolioBtn.forEach((item) => {
     item.addEventListener('click', () => {
-       const tabId = item.dataset.season
-       const currentTab = document.querySelector(tabId)
+       const tabId = item.dataset.season;
+       const currentTab = document.querySelector(tabId);
 
         potrfolioBtn.forEach((item) => {
-            item.classList.remove('btn_portfolio_active')
-        })
+            item.classList.remove('btn_portfolio_active');
+        });
 
         portfolioContent.forEach((i) => {
-            i.classList.remove('portfolio__content_active')
-        })
+            i.classList.remove('portfolio__content_active');
+        });
 
         
-        item.classList.add('btn_portfolio_active')
-        currentTab.classList.add('portfolio__content_active')
+        item.classList.add('btn_portfolio_active');
+        currentTab.classList.add('portfolio__content_active');
        
         
 
-    })
-})
+    });
+});
 
 
 // DarkTheme
 
-const swither = document.querySelector('.switcher')
+const swither = document.querySelector('.switcher');
 
 swither.addEventListener('click', () => {
-    swither.classList.toggle('switcher_active')
+    swither.classList.toggle('switcher_active');
    if(swither.classList.contains('switcher_active')){
         document.documentElement.style.setProperty('--theme-color', '#fff'  );
         document.documentElement.style.setProperty('--main-switch', '#fff'  );
@@ -174,17 +180,99 @@ swither.addEventListener('click', () => {
     document.documentElement.style.setProperty('--main-switch', '#000'  );
     document.documentElement.style.setProperty('--font-color', '#fff'  );
    }
-})
-  
+});
  
+// videoPlayer 
+
+const video = document.querySelector('#video');
+const playBtn = document.querySelector('.video__play');
+
+
+
+const playIcon = document.querySelector('.play__icon');
+const videoProgress = document.querySelector('.progress');
+const volumeBtn = document.querySelector('.volume__icon');
+const volumeRange = document.querySelector('.volume_button');
+
+
+const videoPlay = () => {
+    if(video.paused){
+        video.play();
+        playBtn.classList.add('play__btn_inactive');
+        playIcon.classList.add('play__icon_pause');
+    }else{
+       video.pause();
+       playBtn.classList.remove('play__btn_inactive');
+       playIcon.classList.remove('play__icon_pause');
+    }
+    
+};
+
+volumeRange.addEventListener('change', () => {
+    const volumeValue = volumeRange.value;
+    const colorValue = volumeValue * 100;
+    let color = 'linear-gradient(90deg, rgb(189, 174, 130)' + colorValue + '%, rgb(189, 174, 130)' + colorValue + '%, rgb(200, 200, 200)' + colorValue + '%, rgb(200, 200, 200)' + colorValue + '%';
+    volumeRange.style.background = color;
+    video.volume = volumeValue;
+    if(volumeValue == 0) {
+        volumeBtn.classList.add('volume__icon_muted');
+    }else {
+        volumeBtn.classList.remove('volume__icon_muted');
+    }
+});
+
+volumeBtn.addEventListener('click',() =>{
+   if (video.volume > 0) {
+    volumeBtn.classList.add('volume__icon_muted');
+    video.volume = 0;
+   } else {
+    volumeBtn.classList.remove('volume__icon_muted');
+    video.volume = video.volume + 0.5;
+   }
+        
+ 
+});
+
+
+
+
+
+videoProgress.addEventListener('change', () => {
+    const value = videoProgress.value;
+    const duration = video.duration;
+    let color = 'linear-gradient(90deg, rgb(189, 174, 130)' + value + '%, rgb(189, 174, 130)' + value + '%, rgb(200, 200, 200)' + value + '%, rgb(200, 200, 200)' + value + '%';
+    videoProgress.style.background = color;
+    video.currentTime = (value * duration) / 100;
   
+
+});
+
+
+
+video.addEventListener('timeupdate', () => {
+    const currentTime = video.currentTime;
+    const duration = video.duration;
+    const value = videoProgress.value;
+    videoProgress.value = (currentTime / duration) * 100;
+
+    let color = 'linear-gradient(90deg, rgb(189, 174, 130)' + value + '%, rgb(189, 174, 130)' + value + '%, rgb(200, 200, 200)' + value + '%, rgb(200, 200, 200)' + value + '%'
+    videoProgress.style.background = color
 
    
   
-  
-  
-    
+
+});
 
 
 
-  
+
+
+
+
+
+playIcon.addEventListener('click', videoPlay)
+playBtn.addEventListener('click', videoPlay)
+video.addEventListener('click', videoPlay)
+
+
+
