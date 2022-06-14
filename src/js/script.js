@@ -169,20 +169,47 @@ potrfolioBtn.forEach((item) => {
 
 const swither = document.querySelector('.switcher');
 
+let theme;
+
 swither.addEventListener('click', () => {
     swither.classList.toggle('switcher_active');
    if(swither.classList.contains('switcher_active')){
         document.documentElement.style.setProperty('--theme-color', '#fff'  );
         document.documentElement.style.setProperty('--main-switch', '#fff'  );
         document.documentElement.style.setProperty('--font-color', '#000'  );
+        theme = 'Light';
+        localStorage.setItem('pageTheme' , theme);
+   
+        
    }else {
-    document.documentElement.style.setProperty('--theme-color', '#000'  );
-    document.documentElement.style.setProperty('--main-switch', '#000'  );
-    document.documentElement.style.setProperty('--font-color', '#fff'  );
-   }
+        document.documentElement.style.setProperty('--theme-color', '#000'  );
+        document.documentElement.style.setProperty('--main-switch', '#000'  );
+        document.documentElement.style.setProperty('--font-color', '#fff'  );
+        theme = 'dark';
+        localStorage.setItem('pageTheme' , theme);
+      
+    
+   }   
 });
+
+    // check for the theme
+    let GETTHEME = localStorage.getItem('pageTheme'); // get theme mode
+   
+    if (GETTHEME == 'Light') {
+        document.documentElement.style.setProperty('--theme-color', '#fff'  );
+        document.documentElement.style.setProperty('--main-switch', '#fff'  );
+        document.documentElement.style.setProperty('--font-color', '#000'  );
+        swither.classList.add('switcher_active');
+    }else {
+        document.documentElement.style.setProperty('--theme-color', '#000'  );
+        document.documentElement.style.setProperty('--main-switch', '#000'  );
+        document.documentElement.style.setProperty('--font-color', '#fff'  );
+        swither.classList.remove('switcher_active');
+    }
+    
+  
  
-// videoPlayer 
+ //videoPlayer 
 
 const video = document.querySelector('#video');
 const playBtn = document.querySelector('.video__play');
@@ -254,25 +281,15 @@ video.addEventListener('timeupdate', () => {
     const duration = video.duration;
     const value = videoProgress.value;
     videoProgress.value = (currentTime / duration) * 100;
-
-    let color = 'linear-gradient(90deg, rgb(189, 174, 130)' + value + '%, rgb(189, 174, 130)' + value + '%, rgb(200, 200, 200)' + value + '%, rgb(200, 200, 200)' + value + '%'
-    videoProgress.style.background = color
-
-   
-  
+    let color = 'linear-gradient(90deg, rgb(189, 174, 130)' + value + '%, rgb(189, 174, 130)' + value + '%, rgb(200, 200, 200)' + value + '%, rgb(200, 200, 200)' + value + '%';
+    videoProgress.style.background = color;
 
 });
 
 
-
-
-
-
-
-
-playIcon.addEventListener('click', videoPlay)
-playBtn.addEventListener('click', videoPlay)
-video.addEventListener('click', videoPlay)
+playIcon.addEventListener('click', videoPlay);
+playBtn.addEventListener('click', videoPlay);
+video.addEventListener('click', videoPlay);
 
 
 
