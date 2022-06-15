@@ -126,13 +126,27 @@ ruBtn.addEventListener('click', () => {
     ruBtn.classList.add('btn_active');
     enBtn.classList.remove('btn_active');
         getTranslate('ru');
+    localStorage.setItem('language', 'ru');
 });
 
 enBtn.addEventListener('click', () => {
     ruBtn.classList.remove('btn_active');
     enBtn.classList.add('btn_active');
         getTranslate('en');
+        localStorage.setItem('language', 'en');
 });
+
+    let GETLANGUAGE  = localStorage.getItem('language')
+
+    if (GETLANGUAGE === 'en') {
+        ruBtn.classList.remove('btn_active');
+        enBtn.classList.add('btn_active');
+        getTranslate('en');
+    }else {
+        ruBtn.classList.add('btn_active');
+        enBtn.classList.remove('btn_active');
+        getTranslate('ru');
+    }
 
 // tabs 
 
